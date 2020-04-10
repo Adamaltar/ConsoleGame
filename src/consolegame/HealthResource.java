@@ -22,21 +22,22 @@ public class HealthResource extends Resource{
     }
     @Override
     public void processPersonaj(Personaj p){
-        this.setP(p);
-        p.setX(x);
-        p.setY(y);
-        int healthConsumed=p.heal(this.health);
-        this.health-=healthConsumed;
-        if (this.health<=0)
-            consumed=true;
-    
+        if (!this.isConsumed()){
+            this.setP(p);
+            p.setX(x);
+            p.setY(y);
+            int healthConsumed=p.heal(this.health);
+            this.health-=healthConsumed;
+            if (this.health<=0)
+                consumed=true;
+        }
     }
     @Override
     public String getSymbol(){
         if (p!=null)
             return p.getSymbol();
         else
-            return "\u2774";            
+            return "\u2665";            
     }
     
     
